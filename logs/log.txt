@@ -1,0 +1,408 @@
+2025-07-15 17:18:16,498 - INFO - \u0627\u0633\u062a\u062e\u0631\u0627\u062c \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2013
+2025-07-15 17:18:16,498 - INFO - ====== WebDriver manager ======
+2025-07-15 17:18:16,498 - INFO - \u0627\u0633\u062a\u062e\u0631\u0627\u062c \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2014
+2025-07-15 17:18:16,498 - INFO - ====== WebDriver manager ======
+2025-07-15 17:18:16,546 - INFO - \u0627\u0633\u062a\u062e\u0631\u0627\u062c \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2015
+2025-07-15 17:18:16,546 - INFO - ====== WebDriver manager ======
+2025-07-15 17:18:16,554 - INFO - \u0627\u0633\u062a\u062e\u0631\u0627\u062c \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2016
+2025-07-15 17:18:16,554 - INFO - ====== WebDriver manager ======
+2025-07-15 17:18:18,714 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:18:18,729 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:18:18,775 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:18:18,791 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:18:19,046 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:18:19,061 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:18:19,101 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:18:19,137 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:18:19,401 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:18:19,443 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:18:19,463 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:18:19,494 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:18:55,928 - INFO - \u0634\u0627\u062e\u0635 PP(top 10%) \u0628\u0647\u200c\u0635\u0648\u0631\u062a \u067e\u06cc\u0634\u200c\u0641\u0631\u0636 \u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u062f\u0647 \u06cc\u0627 \u0645\u0646\u0648 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f \u062f\u0631 \u0633\u0627\u0644 2015: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="indicator_select"]"}
+  (Session info: chrome=138.0.7204.101); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x99a8fe]
+	(No symbol) [0x0x99ac9b]
+	(No symbol) [0x0x9e3052]
+	(No symbol) [0x0x9bf4b4]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:18:56,252 - INFO - \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2015: 667 (PP(top 10%): 5.7%)
+2025-07-15 17:18:57,013 - INFO - \u0634\u0627\u062e\u0635 PP(top 10%) \u0628\u0647\u200c\u0635\u0648\u0631\u062a \u067e\u06cc\u0634\u200c\u0641\u0631\u0636 \u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u062f\u0647 \u06cc\u0627 \u0645\u0646\u0648 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f \u062f\u0631 \u0633\u0627\u0644 2016: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="indicator_select"]"}
+  (Session info: chrome=138.0.7204.101); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x99a8fe]
+	(No symbol) [0x0x99ac9b]
+	(No symbol) [0x0x9e3052]
+	(No symbol) [0x0x9bf4b4]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:18:57,366 - INFO - \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2016: 537 (PP(top 10%): 6.7%)
+2025-07-15 17:18:58,196 - INFO - \u0634\u0627\u062e\u0635 PP(top 10%) \u0628\u0647\u200c\u0635\u0648\u0631\u062a \u067e\u06cc\u0634\u200c\u0641\u0631\u0636 \u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u062f\u0647 \u06cc\u0627 \u0645\u0646\u0648 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f \u062f\u0631 \u0633\u0627\u0644 2013: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="indicator_select"]"}
+  (Session info: chrome=138.0.7204.101); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x99a8fe]
+	(No symbol) [0x0x99ac9b]
+	(No symbol) [0x0x9e3052]
+	(No symbol) [0x0x9bf4b4]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:18:58,378 - WARNING - \u062f\u0627\u0646\u0634\u06af\u0627\u0647 Ferdowsi University of Mashhad \u062f\u0631 \u0633\u0627\u0644 2013 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f
+2025-07-15 17:18:59,580 - INFO - \u0627\u0633\u062a\u062e\u0631\u0627\u062c \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2018
+2025-07-15 17:18:59,580 - INFO - ====== WebDriver manager ======
+2025-07-15 17:18:59,580 - INFO - ====== WebDriver manager ======
+2025-07-15 17:19:00,969 - INFO - \u0627\u0633\u062a\u062e\u0631\u0627\u062c \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2019
+2025-07-15 17:19:00,969 - INFO - ====== WebDriver manager ======
+2025-07-15 17:19:01,472 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:01,474 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:01,791 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:01,825 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:02,130 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:19:02,154 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:19:02,722 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:03,046 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:03,408 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:19:15,650 - INFO - \u0634\u0627\u062e\u0635 PP(top 10%) \u0628\u0647\u200c\u0635\u0648\u0631\u062a \u067e\u06cc\u0634\u200c\u0641\u0631\u0636 \u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u062f\u0647 \u06cc\u0627 \u0645\u0646\u0648 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f \u062f\u0631 \u0633\u0627\u0644 2014: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="indicator_select"]"}
+  (Session info: chrome=138.0.7204.101); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x99a8fe]
+	(No symbol) [0x0x99ac9b]
+	(No symbol) [0x0x9e3052]
+	(No symbol) [0x0x9bf4b4]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:19:15,926 - INFO - \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2014: 669 (PP(top 10%): 5.4%)
+2025-07-15 17:19:19,226 - INFO - \u0627\u0633\u062a\u062e\u0631\u0627\u062c \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2020
+2025-07-15 17:19:19,226 - INFO - ====== WebDriver manager ======
+2025-07-15 17:19:20,932 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:21,311 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:21,648 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:19:45,592 - ERROR - \u062e\u0637\u0627 \u062f\u0631 \u0627\u0633\u06a9\u0631\u06cc\u067e\u06cc\u0646\u06af \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2017: Message: unknown error: net::ERR_CONNECTION_TIMED_OUT
+  (Session info: chrome=138.0.7204.101)
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x94f860]
+	(No symbol) [0x0x9430e2]
+	(No symbol) [0x0x944b18]
+	(No symbol) [0x0x943378]
+	(No symbol) [0x0x942eb3]
+	(No symbol) [0x0x942bc1]
+	(No symbol) [0x0x940b64]
+	(No symbol) [0x0x94150b]
+	(No symbol) [0x0x955b5e]
+	(No symbol) [0x0x9e1447]
+	(No symbol) [0x0x9bf46c]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:19:45,609 - ERROR - \u062e\u0637\u0627 \u062f\u0631 \u0627\u0633\u06a9\u0631\u06cc\u067e\u06cc\u0646\u06af \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2018: Message: unknown error: net::ERR_CONNECTION_TIMED_OUT
+  (Session info: chrome=138.0.7204.101)
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x94f860]
+	(No symbol) [0x0x9430e2]
+	(No symbol) [0x0x944b18]
+	(No symbol) [0x0x943378]
+	(No symbol) [0x0x942eb3]
+	(No symbol) [0x0x942bc1]
+	(No symbol) [0x0x940b64]
+	(No symbol) [0x0x94150b]
+	(No symbol) [0x0x955b5e]
+	(No symbol) [0x0x9e1447]
+	(No symbol) [0x0x9bf46c]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:19:46,821 - ERROR - \u062e\u0637\u0627 \u062f\u0631 \u0627\u0633\u06a9\u0631\u06cc\u067e\u06cc\u0646\u06af \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2019: Message: unknown error: net::ERR_CONNECTION_TIMED_OUT
+  (Session info: chrome=138.0.7204.101)
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x94f860]
+	(No symbol) [0x0x9430e2]
+	(No symbol) [0x0x944b18]
+	(No symbol) [0x0x943378]
+	(No symbol) [0x0x942eb3]
+	(No symbol) [0x0x942bc1]
+	(No symbol) [0x0x940b64]
+	(No symbol) [0x0x94150b]
+	(No symbol) [0x0x955b5e]
+	(No symbol) [0x0x9e1447]
+	(No symbol) [0x0x9bf46c]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:19:48,887 - INFO - \u0627\u0633\u062a\u062e\u0631\u0627\u062c \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2021
+2025-07-15 17:19:48,887 - INFO - \u0627\u0633\u062a\u062e\u0631\u0627\u062c \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2022
+2025-07-15 17:19:48,887 - INFO - ====== WebDriver manager ======
+2025-07-15 17:19:48,887 - INFO - ====== WebDriver manager ======
+2025-07-15 17:19:48,903 - INFO - \u0627\u0633\u062a\u062e\u0631\u0627\u062c \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2023
+2025-07-15 17:19:48,903 - INFO - ====== WebDriver manager ======
+2025-07-15 17:19:50,859 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:50,880 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:50,889 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:51,209 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:51,216 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:51,447 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:19:51,542 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:19:51,552 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:19:51,746 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:20:05,058 - ERROR - \u062e\u0637\u0627 \u062f\u0631 \u0627\u0633\u06a9\u0631\u06cc\u067e\u06cc\u0646\u06af \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2020: Message: unknown error: net::ERR_CONNECTION_TIMED_OUT
+  (Session info: chrome=138.0.7204.101)
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x94f860]
+	(No symbol) [0x0x9430e2]
+	(No symbol) [0x0x944b18]
+	(No symbol) [0x0x943378]
+	(No symbol) [0x0x942eb3]
+	(No symbol) [0x0x942bc1]
+	(No symbol) [0x0x940b64]
+	(No symbol) [0x0x94150b]
+	(No symbol) [0x0x955b5e]
+	(No symbol) [0x0x9e1447]
+	(No symbol) [0x0x9bf46c]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:20:08,360 - INFO - \u0627\u0633\u062a\u062e\u0631\u0627\u062c \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2024
+2025-07-15 17:20:08,360 - INFO - ====== WebDriver manager ======
+2025-07-15 17:20:10,110 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:20:10,452 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-15 17:20:10,788 - INFO - Driver [C:\Users\Amir Daneshmand\.wdm\drivers\chromedriver\win64\138.0.7204.94\chromedriver-win32/chromedriver.exe] found in cache
+2025-07-15 17:20:26,307 - INFO - \u0634\u0627\u062e\u0635 PP(top 10%) \u0628\u0647\u200c\u0635\u0648\u0631\u062a \u067e\u06cc\u0634\u200c\u0641\u0631\u0636 \u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u062f\u0647 \u06cc\u0627 \u0645\u0646\u0648 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f \u062f\u0631 \u0633\u0627\u0644 2022: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="indicator_select"]"}
+  (Session info: chrome=138.0.7204.101); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x99a8fe]
+	(No symbol) [0x0x99ac9b]
+	(No symbol) [0x0x9e3052]
+	(No symbol) [0x0x9bf4b4]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:20:26,322 - INFO - \u0634\u0627\u062e\u0635 PP(top 10%) \u0628\u0647\u200c\u0635\u0648\u0631\u062a \u067e\u06cc\u0634\u200c\u0641\u0631\u0636 \u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u062f\u0647 \u06cc\u0627 \u0645\u0646\u0648 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f \u062f\u0631 \u0633\u0627\u0644 2023: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="indicator_select"]"}
+  (Session info: chrome=138.0.7204.101); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x99a8fe]
+	(No symbol) [0x0x99ac9b]
+	(No symbol) [0x0x9e3052]
+	(No symbol) [0x0x9bf4b4]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:20:26,927 - INFO - \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2022: 445 (PP(top 10%): 6.8%)
+2025-07-15 17:20:27,043 - INFO - \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2023: 466 (PP(top 10%): 6.6%)
+2025-07-15 17:20:27,668 - INFO - \u0634\u0627\u062e\u0635 PP(top 10%) \u0628\u0647\u200c\u0635\u0648\u0631\u062a \u067e\u06cc\u0634\u200c\u0641\u0631\u0636 \u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u062f\u0647 \u06cc\u0627 \u0645\u0646\u0648 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f \u062f\u0631 \u0633\u0627\u0644 2021: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="indicator_select"]"}
+  (Session info: chrome=138.0.7204.101); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x99a8fe]
+	(No symbol) [0x0x99ac9b]
+	(No symbol) [0x0x9e3052]
+	(No symbol) [0x0x9bf4b4]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:20:28,280 - INFO - \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2021: 440 (PP(top 10%): 6.6%)
+2025-07-15 17:20:56,029 - INFO - \u0634\u0627\u062e\u0635 PP(top 10%) \u0628\u0647\u200c\u0635\u0648\u0631\u062a \u067e\u06cc\u0634\u200c\u0641\u0631\u0636 \u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u062f\u0647 \u06cc\u0627 \u0645\u0646\u0648 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f \u062f\u0631 \u0633\u0627\u0644 2024: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="indicator_select"]"}
+  (Session info: chrome=138.0.7204.101); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+	GetHandleVerifier [0x0xb144a3+62419]
+	GetHandleVerifier [0x0xb144e4+62484]
+	(No symbol) [0x0x952133]
+	(No symbol) [0x0x99a8fe]
+	(No symbol) [0x0x99ac9b]
+	(No symbol) [0x0x9e3052]
+	(No symbol) [0x0x9bf4b4]
+	(No symbol) [0x0x9e087a]
+	(No symbol) [0x0x9bf266]
+	(No symbol) [0x0x98e852]
+	(No symbol) [0x0x98f6f4]
+	GetHandleVerifier [0x0xd84793+2619075]
+	GetHandleVerifier [0x0xd7fbaa+2599642]
+	GetHandleVerifier [0x0xb3b04a+221050]
+	GetHandleVerifier [0x0xb2b2c8+156152]
+	GetHandleVerifier [0x0xb31c7d+183213]
+	GetHandleVerifier [0x0xb1c388+94904]
+	GetHandleVerifier [0x0xb1c512+95298]
+	GetHandleVerifier [0x0xb0766a+9626]
+	BaseThreadInitThunk [0x0x76bafcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x770082ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x7700827e+238]
+
+2025-07-15 17:20:56,729 - INFO - \u0631\u062a\u0628\u0647 \u0628\u0631\u0627\u06cc \u0633\u0627\u0644 2024: 487 (PP(top 10%): 6.8%)
+2025-07-15 17:21:00,070 - INFO - \u0641\u0627\u06cc\u0644 leiden_rankings.json \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062a\u0648\u0644\u06cc\u062f \u0634\u062f. \u0632\u0645\u0627\u0646 \u0627\u062c\u0631\u0627: 164.24 \u062b\u0627\u0646\u06cc\u0647
