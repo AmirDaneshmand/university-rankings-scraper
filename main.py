@@ -1,6 +1,6 @@
 import json
 import logging
-from modules import leiden, scimago, isc, times, shanghai
+from modules import leiden
 
 # تنظیم لاگ‌گیری
 logging.basicConfig(
@@ -30,6 +30,6 @@ def main():
         
     except Exception as e:
         logging.error(f"خطا در اجرای اصلی: {str(e)}")
-
+    
 if __name__ == "__main__":
     main()
