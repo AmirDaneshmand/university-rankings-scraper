@@ -1,0 +1,61 @@
+{
+  "university": "Ferdowsi University of Mashhad",
+  "scimago_rankings": {
+    "2011": {
+      "country_rank": 14,
+      "global_rank": 2791
+    },
+    "2012": {
+      "country_rank": 11,
+      "global_rank": 2539
+    },
+    "2013": {
+      "country_rank": 10,
+      "global_rank": 2333
+    },
+    "2014": {
+      "country_rank": 9,
+      "global_rank": 2052
+    },
+    "2015": {
+      "country_rank": 8,
+      "global_rank": 2125
+    },
+    "2016": {
+      "country_rank": 6,
+      "global_rank": 1174
+    },
+    "2017": {
+      "country_rank": 10,
+      "global_rank": 2336
+    },
+    "2018": {
+      "country_rank": 5,
+      "global_rank": 1834
+    },
+    "2019": {
+      "country_rank": 4,
+      "global_rank": 1765
+    },
+    "2020": {
+      "country_rank": 3,
+      "global_rank": 1362
+    },
+    "2021": {
+      "country_rank": 3,
+      "global_rank": 1236
+    },
+    "2022": {
+      "country_rank": 4,
+      "global_rank": 1711
+    },
+    "2023": {
+      "country_rank": 4,
+      "global_rank": 1655
+    },
+    "2024": {
+      "country_rank": 6,
+      "global_rank": 2395
+    }
+  }
+}

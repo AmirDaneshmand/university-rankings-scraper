@@ -1,46 +1,153 @@
 import logging
+import time
+import json
+import os
+from multiprocessing import Pool
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
-import time
+import random
+
+# تنظیم لاگ‌گیری
+logging.basicConfig(
+    filename='logs/log.txt',
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
+UNIVERSITY_NAME = "Ferdowsi University of Mashhad"
+MAX_RETRIES = 3
+JSON_FILE = "data/university_rankings.json"
+
+def load_previous_rankings():
+    """خواندن رتبه‌های قبلی از فایل JSON"""
+    if os.path.exists(JSON_FILE):
+        try:
+            with open(JSON_FILE, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                return data.get("rankings", {}).get("scimago", {})
+        except Exception as e:
+            logging.error(f"خطا در خواندن فایل JSON: {str(e)}")
+            return {}
+    return {}
+
+def setup_driver():
+    """تنظیم WebDriver"""
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--disable-notifications")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--ignore-certificate-errors")
+    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/91.0.4472.124")
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+
+def scrape_year(args):
+    """اسکریپینگ رتبه برای یک سال خاص"""
+    university_name, year = args
+    logging.info(f"استخراج رتبه برای سال {year}")
+    driver = None
+    result = {year: None}
+    
+    for attempt in range(MAX_RETRIES):
+        try:
+            driver = setup_driver()
+            url_year = str(int(year) - 5)  # محاسبه سال URL (۵ سال قبل)
+            url = f"https://www.scimagoir.com/rankings.php?country=IRN&year={url_year}§or=Higher educ"
+            driver.get(url)
+            WebDriverWait(driver, 30).until(
+                EC.presence_of_element_located((By.ID, "tablewrapper"))
+            )
+            time.sleep(random.uniform(10, 15))
+
+            # استخراج HTML
+            soup = BeautifulSoup(driver.page_source, 'lxml')
+            table_wrapper = soup.find('div', id='tablewrapper')
+            if not table_wrapper:
+                logging.warning(f"جدول با id 'tablewrapper' برای سال {year} (URL year={url_year}) یافت نشد")
+                return result
+
+            rows = table_wrapper.find_all('tr')
+            logging.debug(f"تعداد ردیف‌ها در جدول سال {year}: {len(rows)}")
+            found = False
+            for row in rows:
+                try:
+                    cells = row.find_all('td')
+                    if len(cells) >= 3:
+                        rank_cell = cells[1].get('class', [])
+                        university_cell = cells[2].text.lower().strip()
+                        if 'ranknumber' in rank_cell:
+                            logging.debug(f"نام دانشگاه در ردیف: {university_cell}")
+                            keywords = [
+                                university_name.lower(), "ferdowsi univ", "ferdowsi university",
+                                "ferdowsi", "mashhad", "mashhad university", "um.ac.ir",
+                                "ferdosi", "ferdousi", "ferdowsi mashhad"
+                            ]
+                            if any(keyword in university_cell for keyword in keywords):
+                                global_rank = None
+                                global_span = cells[1].find('span', class_='global_ranking')
+                                if global_span and global_span.text.strip().startswith('(') and global_span.text.strip().endswith(')'):
+                                    global_rank_text = global_span.text.strip()[1:-1]
+                                    global_rank = int(global_rank_text) if global_rank_text.isdigit() else None
+                                if global_rank:
+                                    result[year] = global_rank
+                                    logging.info(f"رتبه جهانی برای سال {year}: {global_rank}")
+                                    found = True
+                                    break
+                except Exception as e:
+                    logging.error(f"خطا در پردازش ردیف برای سال {year}: {str(e)}")
+                    continue
+
+            if not found:
+                logging.warning(f"دانشگاه {university_name} در سال {year} (URL year={url_year}) یافت نشد")
+            break
+
+        except Exception as e:
+            logging.error(f"خطا در اسکریپینگ برای سال {year}، تلاش {attempt + 1}: {str(e)}")
+            if attempt < MAX_RETRIES - 1:
+                time.sleep(random.uniform(5, 10))
+                continue
+            else:
+                logging.error(f"تلاش‌های مجدد برای سال {year} به پایان رسید")
+                break
+        finally:
+            if driver:
+                try:
+                    driver.quit()
+                except Exception as e:
+                    logging.error(f"خطا در بستن WebDriver برای سال {year}: {str(e)}")
+
+    return result
 
 def get_rank(university_name):
-    try:
-        logging.info(f"دریافت رتبه‌بندی SCImago برای {university_name}")
-        url = "https://www.scimagoir.com/rankings.php?sector=Higher+educ."
-        
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--disable-gpu")
-        driver = webdriver.Chrome(options=chrome_options)
-        
-        driver.get(url)
-        time.sleep(3)
+    """تابع اصلی برای استخراج رتبه‌ها با ادغام نتایج قبلی"""
+    # خواندن رتبه‌های قبلی
+    previous_ranks = load_previous_rankings()
+    logging.info(f"رتبه‌های قبلی لود شدند: {previous_ranks}")
 
-        soup = BeautifulSoup(driver.page_source, 'lxml')
-        driver.quit()
+    # تنظیم سال‌ها
+    years = [str(year) for year in range(2011, 2025)]
+    ranks = {year: previous_ranks.get(year, None) for year in years}  # استفاده از رتبه‌های قبلی به عنوان پایه
 
-        table = soup.find('table', class_='ranking-table')  # کلاس فرضی
-        if not table:
-            logging.warning("جدول رتبه‌بندی SCImago یافت نشد")
-            return {}
-
-        ranks = {}
-        years = [str(year) for year in range(2010, 2024)]
-        for year in years:
-            ranks[year] = None
-
-        for row in table.find_all('tr'):
-            cells = row.find_all('td')
-            if len(cells) > 2 and university_name.lower() in cells[1].text.lower():
-                for year in years:
-                    year_index = years.index(year) + 2
-                    if len(cells) > year_index:
-                        rank = cells[year_index].text.strip()
-                        ranks[year] = int(rank) if rank.isdigit() else None
-
-        return ranks
-
-    except Exception as e:
-        logging.error(f"خطا در رتبه‌بندی SCImago برای {university_name}: {str(e)}")
-        return {}
+    # اجرای موازی
+    start_time = time.time()
+    with Pool(processes=3) as pool:
+        args = [(university_name, year) for year in years]
+        results = pool.map(scrape_year, args)
+    
+    # ادغام نتایج جدید
+    for result in results:
+        for year, rank in result.items():
+            if rank is not None:  # فقط اگر رتبه جدید پیدا شد، به‌روزرسانی کن
+                ranks[year] = rank
+            # اگر رتبه جدید None بود و رتبه قبلی وجود داشت، رتبه قبلی حفظ می‌شود
+    
+    logging.info(f"استخراج رتبه‌های SCImago برای {university_name} تکمیل شد. زمان اجرا: {time.time() - start_time:.2f} ثانیه")
+    return ranks
