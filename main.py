@@ -1,6 +1,6 @@
 import json
 import logging
-from modules import leiden, scimago
+from modules import leiden, scimago, times
 
 # تنظیم لاگ‌گیری
 logging.basicConfig(
@@ -16,8 +16,8 @@ def main():
         result = {
             "university": UNIVERSITY_NAME,
             "rankings": {
-                "leiden": leiden.get_rank(UNIVERSITY_NAME),
-                "scimago": scimago.get_rank(UNIVERSITY_NAME),
+                # "leiden": leiden.get_rank(UNIVERSITY_NAME),
+                # "scimago": scimago.get_rank(UNIVERSITY_NAME),
                 # "isc": isc.get_rank(UNIVERSITY_NAME),
                 # "times": times.get_rank(UNIVERSITY_NAME),
                 # "shanghai": shanghai.get_rank(UNIVERSITY_NAME)
