@@ -147,7 +147,7 @@ def get_rank(university_name):
     ranks = {year: previous_ranks.get(year, None) for year in years}
 
     start_time = time.time()
-    with Pool(processes=2) as pool:
+    with Pool(processes=4) as pool:
         args = [(university_name, year) for year in years]
         results = pool.map(scrape_year, args)
     
