@@ -58,6 +58,8 @@ def main():
         with open(JSON_FILE, "w", encoding='utf-8') as f:
             json.dump(result, f, indent=2, ensure_ascii=False)
         
+        print(result)
+
     except Exception as e:
         logging.error(f"خطا در اجرای اصلی: {str(e)}")
 

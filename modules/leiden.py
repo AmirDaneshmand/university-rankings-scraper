@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # تنظیم لاگ‌گیری
-os.makedirs('logs', exist_ok=True)  # ایجاد پوشه logs در صورت عدم وجود
+os.makedirs('logs', exist_ok=True)
 logging.basicConfig(
     filename='logs/log.txt',
     level=logging.DEBUG if os.getenv('DEBUG') == 'True' else logging.ERROR,
@@ -43,9 +43,9 @@ def load_previous_rankings():
     return {}
 
 def setup_driver():
-    """تنظیم WebDriver"""
+    """تنظیم WebDriver با سرکوب کامل لاگ‌ها"""
     chrome_options = Options()
-    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless=new")  # استفاده از headless جدید
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--disable-notifications")
@@ -53,11 +53,22 @@ def setup_driver():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--ignore-certificate-errors")
     chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/91.0.4472.124")
-    chrome_options.add_argument("--log-level=3")  # سرکوب پیام‌های کنسول WebDriver
-    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])  # غیرفعال کردن لاگ‌های DevTools
+    chrome_options.add_argument("--log-level=3")
+    chrome_options.add_argument("--mute-audio")
+    chrome_options.add_argument("--disable-features=VoiceTranscription,MediaSession,MediaSessionService")
+    chrome_options.add_argument("--disable-logging")  # غیرفعال کردن لاگ‌های اضافی
+    chrome_options.add_argument("--disable-background-timer-throttling")
+    chrome_options.add_argument("--disable-backgrounding-occluded-windows")
+    chrome_options.add_argument("--disable-renderer-backgrounding")
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging', 'enable-automation'])
+    chrome_options.add_experimental_option('prefs', {
+        'loggingPrefs': {'browser': 'OFF', 'driver': 'OFF', 'server': 'OFF'},  # غیرفعال کردن لاگ‌های مرورگر
+        'profile.default_content_setting_values.media_stream': 2,  # غیرفعال کردن دسترسی به رسانه
+    })
     try:
-        driver_path = ChromeDriverManager().install()
-        return webdriver.Chrome(service=Service(driver_path), options=chrome_options)
+        driver_path = ChromeDriverManager(log_level=0).install()  # log_level=0 برای سرکوب لاگ‌های webdriver-manager
+        service = Service(driver_path, log_output=os.devnull)
+        return webdriver.Chrome(service=service, options=chrome_options)
     except PermissionError as e:
         logging.error(f"خطای دسترسی در نصب درایور کروم: {str(e)}")
         raise
@@ -74,16 +85,19 @@ def scrape_year(args):
             driver = setup_driver()
             url = f"https://www.leidenranking.com/ranking/{year}"
             driver.get(url)
-            WebDriverWait(driver, 30).until(
+            WebDriverWait(driver, 10).until(
                 EC.presence_of_all_elements_located((By.CLASS_NAME, "pagedtable.ranking"))
             )
-            time.sleep(random.uniform(10, 15))
 
             # انتخاب شاخص PP(top 10%)
             try:
-                select = driver.find_element(By.ID, 'indicator_select')
+                select = WebDriverWait(driver, 5).until(
+                    EC.presence_of_element_located((By.ID, "indicator_select"))
+                )
                 Select(select).select_by_value('PP(top 10%)')
-                time.sleep(5)
+                WebDriverWait(driver, 5).until(
+                    EC.presence_of_all_elements_located((By.CLASS_NAME, "pagedtable.ranking"))
+                )
             except Exception as e:
                 logging.info(f"شاخص PP(top 10%) به‌صورت پیش‌فرض انتخاب شده یا منو یافت نشد در سال {year}: {str(e)}")
 
@@ -135,7 +149,7 @@ def scrape_year(args):
         except Exception as e:
             logging.error(f"خطا در اسکریپینگ برای سال {year}، تلاش {attempt + 1}: {str(e)}")
             if attempt < MAX_RETRIES - 1:
-                time.sleep(random.uniform(5, 10))
+                time.sleep(random.uniform(3, 5))
                 continue
             else:
                 logging.error(f"تلاش‌های مجدد برای سال {year} به پایان رسید")
@@ -158,7 +172,7 @@ def get_rank(university_name):
     ranks = {year: previous_ranks.get(year, None) for year in years}
 
     start_time = time.time()
-    with Pool(processes=4) as pool:
+    with Pool(processes=int(os.getenv('NUM_PROCESSES', 3))) as pool:
         args = [(university_name, year) for year in years]
         results = pool.map(scrape_year, args)
     
