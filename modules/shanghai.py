@@ -10,14 +10,18 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 import random
+from dotenv import load_dotenv
+
+# بارگذاری متغیرهای محیطی
+load_dotenv()
 
 # تنظیم لاگ‌گیری
+os.makedirs('logs', exist_ok=True)  # ایجاد پوشه logs در صورت عدم وجود
 logging.basicConfig(
-    filename='logs/shanghai_log.txt',
-    level=logging.DEBUG,
+    filename='logs/log.txt',
+    level=logging.DEBUG if os.getenv('DEBUG') == 'True' else logging.ERROR,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
@@ -31,7 +35,7 @@ def load_previous_rankings():
         try:
             with open(JSON_FILE, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-                return data.get("rankings", {}).get("shanghai", {})
+                return data.get("rankings", {}).get("times", {})
         except Exception as e:
             logging.error(f"خطا در خواندن فایل JSON: {str(e)}")
             return {}
@@ -48,6 +52,8 @@ def setup_driver():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--ignore-certificate-errors")
     chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/91.0.4472.124")
+    chrome_options.add_argument("--log-level=3")  # سرکوب پیام‌های کنسول WebDriver
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])  # غیرفعال کردن لاگ‌های DevTools
     try:
         driver_path = ChromeDriverManager().install()
         return webdriver.Chrome(service=Service(driver_path), options=chrome_options)
@@ -58,62 +64,50 @@ def setup_driver():
 def scrape_year(args):
     """اسکریپینگ رتبه برای یک سال خاص"""
     university_name, year = args
-    logging.info(f"استخراج رتبه برای سال {year}")
+    logging.info(f"استخراج رتبه برای سال {year} (Times Higher Education)")
     driver = None
     result = {year: None}
     
     for attempt in range(MAX_RETRIES):
         try:
             driver = setup_driver()
-            url = f"https://www.shanghairanking.com/rankings/arwu/{year}"
+            url = f"https://www.timeshighereducation.com/world-university-rankings/{year}/world-ranking#!/length/25/locations/IRN/name/ferdowsi/sort_by/rank/sort_order/asc/cols/scores"
             driver.get(url)
             WebDriverWait(driver, 30).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "input.search-input"))
+                EC.presence_of_element_located((By.ID, "datatable-1"))
             )
             time.sleep(random.uniform(10, 15))
 
-            # جستجوی نام دانشگاه
-            try:
-                search_input = driver.find_element(By.CSS_SELECTOR, "input.search-input")
-                search_input.clear()
-                search_input.send_keys("Ferdowsi")
-                search_input.send_keys(Keys.RETURN)
-                logging.debug(f"جستجو برای 'Ferdowsi' در سال {year} انجام شد")
-                time.sleep(8)  # انتظار بیشتر برای بارگذاری نتایج
-            except Exception as e:
-                logging.warning(f"خطا در جستجوی دانشگاه برای سال {year}: {str(e)}")
-                return result
-
             # استخراج HTML
             soup = BeautifulSoup(driver.page_source, 'lxml')
-            table_body = soup.find('tbody', {'data-v-ae1ab4a8': ''})
-            if not table_body:
-                logging.warning(f"جدول با tbody[data-v-ae1ab4a8] برای سال {year} یافت نشد")
+            table = soup.find('table', id='datatable-1')
+            if not table:
+                logging.warning(f"جدول با id 'datatable-1' برای سال {year} یافت نشد")
                 return result
 
-            rows = table_body.find_all('tr')
+            rows = table.find_all('tr')
             logging.debug(f"تعداد ردیف‌ها در جدول سال {year}: {len(rows)}")
             found = False
             for row in rows:
                 try:
                     cells = row.find_all('td')
                     if len(cells) >= 2:
-                        rank_div = cells[0].find('div', class_='ranking')
-                        rank = rank_div.text.strip() if rank_div else None
-                        university_span = cells[1].find('span', class_='univ-name')
-                        university_cell = university_span.text.lower().strip() if university_span else ""
-                        logging.debug(f"نام دانشگاه در ردیف: {university_cell}")
-                        keywords = [
-                            university_name.lower(), "ferdowsi univ", "ferdowsi university",
-                            "ferdowsi", "mashhad", "mashhad university", "um.ac.ir",
-                            "ferdosi", "ferdousi", "ferdowsi mashhad"
-                        ]
-                        if any(keyword in university_cell for keyword in keywords):
-                            if rank:
-                                result[year] = rank
-                                logging.info(f"رتبه برای سال {year}: {rank}")
-                                found = True
-                                break
+                        rank_cell = cells[0].get('class', [])
+                        university_cell = cells[1].text.lower().strip()
+                        if 'rank' in rank_cell:
+                            logging.debug(f"نام دانشگاه در ردیف: {university_cell}")
+                            keywords = [
+                                university_name.lower(), "ferdowsi univ", "ferdowsi university",
+                                "ferdowsi", "mashhad", "mashhad university", "um.ac.ir",
+                                "ferdosi", "ferdousi", "ferdowsi mashhad"
+                            ]
+                            if any(keyword in university_cell for keyword in keywords):
+                                rank = cells[0].text.strip()
+                                if rank:
+                                    result[year] = rank
+                                    logging.info(f"رتبه برای سال {year}: {rank}")
+                                    found = True
+                                    break
                 except Exception as e:
                     logging.error(f"خطا در پردازش ردیف برای سال {year}: {str(e)}")
                     continue
@@ -141,27 +135,21 @@ def scrape_year(args):
 
 def get_rank(university_name):
     """تابع اصلی برای استخراج رتبه‌ها با ادغام نتایج قبلی"""
-    # خواندن رتبه‌های قبلی
     previous_ranks = load_previous_rankings()
     logging.info(f"رتبه‌های قبلی لود شدند: {previous_ranks}")
 
-    # تنظیم سال‌ها
     years = [str(year) for year in range(2013, 2025)]
-    ranks = {year: previous_ranks.get(year, None) for year in years}  # استفاده از رتبه‌های قبلی به عنوان پایه
+    ranks = {year: previous_ranks.get(year, None) for year in years}
 
-    # اجرای موازی
     start_time = time.time()
-    with Pool(processes=2) as pool:  # کاهش به ۲ فرآیند برای پایداری
+    with Pool(processes=2) as pool:
         args = [(university_name, year) for year in years]
         results = pool.map(scrape_year, args)
     
-    # ادغام نتایج جدید
     for result in results:
         for year, rank in result.items():
-            if rank is not None:  # فقط اگر رتبه جدید پیدا شد، به‌روزرسانی کن
+            if rank is not None:
                 ranks[year] = rank
-            # اگر رتبه جدید None بود و رتبه قبلی وجود داشت، رتبه قبلی حفظ می‌شود
     
-    
-    logging.info(f"فایل university_rankings.json با موفقیت به‌روزرسانی شد. زمان اجرا: {time.time() - start_time:.2f} ثانیه")
+    logging.info(f"استخراج رتبه‌های Times Higher Education برای {university_name} تکمیل شد. زمان اجرا: {time.time() - start_time:.2f} ثانیه")
     return ranks

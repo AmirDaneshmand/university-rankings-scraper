@@ -14,11 +14,16 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 import random
+from dotenv import load_dotenv
+
+# بارگذاری متغیرهای محیطی
+load_dotenv()
 
 # تنظیم لاگ‌گیری
+os.makedirs('logs', exist_ok=True)  # ایجاد پوشه logs در صورت عدم وجود
 logging.basicConfig(
-    filename='logs/isc_log.txt',
-    level=logging.DEBUG,
+    filename='logs/log.txt',
+    level=logging.DEBUG if os.getenv('DEBUG') == 'True' else logging.ERROR,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
@@ -62,6 +67,8 @@ def setup_driver():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--ignore-certificate-errors")
     chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/91.0.4472.124")
+    chrome_options.add_argument("--log-level=3")  # سرکوب پیام‌های کنسول WebDriver
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])  # غیرفعال کردن لاگ‌های DevTools
     try:
         driver_path = ChromeDriverManager().install()
         return webdriver.Chrome(service=Service(driver_path), options=chrome_options)
@@ -72,7 +79,7 @@ def setup_driver():
 def scrape_year(args):
     """اسکریپینگ رتبه برای یک سال خاص"""
     university_name, year = args
-    logging.info(f"استخراج رتبه برای سال {year}")
+    logging.info(f"استخراج رتبه برای سال {year} (ISC)")
     driver = None
     result = {year: None}
     
@@ -101,7 +108,7 @@ def scrape_year(args):
                 year_select = Select(driver.find_element(By.ID, "year_list"))
                 year_select.select_by_value(YEAR_MAPPING[year])
                 logging.debug(f"سال {year} انتخاب شد")
-                time.sleep(5)  # انتظار برای بارگذاری جدول
+                time.sleep(5)
             except Exception as e:
                 logging.warning(f"خطا در انتخاب سال {year}: {str(e)}")
                 return result
@@ -113,7 +120,7 @@ def scrape_year(args):
                 search_input.send_keys("فردوسی")
                 search_input.send_keys(Keys.RETURN)
                 logging.debug(f"جستجو برای 'فردوسی' در سال {year} انجام شد")
-                time.sleep(5)  # انتظار برای بارگذاری نتایج
+                time.sleep(5)
             except Exception as e:
                 logging.warning(f"خطا در جستجوی دانشگاه برای سال {year}: {str(e)}")
                 return result
@@ -143,7 +150,7 @@ def scrape_year(args):
                         ]
                         if any(keyword in university_cell for keyword in keywords):
                             if rank:
-                                result[year] = rank  # ذخیره به صورت رشته
+                                result[year] = rank
                                 logging.info(f"رتبه برای سال {year}: {rank}")
                                 found = True
                                 break
@@ -174,28 +181,21 @@ def scrape_year(args):
 
 def get_rank(university_name):
     """تابع اصلی برای استخراج رتبه‌ها با ادغام نتایج قبلی"""
-    # خواندن رتبه‌های قبلی
     previous_ranks = load_previous_rankings()
     logging.info(f"رتبه‌های قبلی لود شدند: {previous_ranks}")
 
-    # تنظیم سال‌ها
     years = list(YEAR_MAPPING.keys())
-    ranks = {year: previous_ranks.get(year, None) for year in years}  # استفاده از رتبه‌های قبلی به عنوان پایه
+    ranks = {year: previous_ranks.get(year, None) for year in years}
 
-    # اجرای موازی
     start_time = time.time()
-    with Pool(processes=2) as pool:  # ۲ فرآیند برای پایداری
+    with Pool(processes=2) as pool:
         args = [(university_name, year) for year in years]
         results = pool.map(scrape_year, args)
     
-    # ادغام نتایج جدید
     for result in results:
         for year, rank in result.items():
-            if rank is not None:  # فقط اگر رتبه جدید پیدا شد، به‌روزرسانی کن
+            if rank is not None:
                 ranks[year] = rank
-            # اگر رتبه جدید None بود و رتبه قبلی وجود داشت، رتبه قبلی حفظ می‌شود
     
-    
-    logging.info(f"فایل university_rankings.json با موفقیت به‌روزرسانی شد. زمان اجرا: {time.time() - start_time:.2f} ثانیه")
+    logging.info(f"استخراج رتبه‌های ISC برای {university_name} تکمیل شد. زمان اجرا: {time.time() - start_time:.2f} ثانیه")
     return ranks
-
