@@ -1,0 +1,21 @@
+# Log files
+logs/log.txt
+
+# Python virtual environment
+venv/
+.env/
+
+# Webdriver manager cache
+.wdm/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Other temporary files
+*.log
+*.cache
+*.swp
+*.swo
+.DS_Store
